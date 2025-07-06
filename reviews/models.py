@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinLengthValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from movies.models import Movie
 
 
@@ -8,11 +8,11 @@ class Review(models.Model):
                               related_name='reviwes')
     stars = models.IntegerField(
         validators=[
-            MinLengthValidator(0, 'Avaliação não pode serinferior a 0 estrelas.'),
+            MinValueValidator(0, 'Avaliação não pode serinferior a 0 estrelas.'),
             MaxValueValidator(5, 'Avaliação não pode ser superior a 5 estrelas.'),
         ]
     )
     comment = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.movie
+        return f'{self.movie.title} - {self.stars} estrelas'

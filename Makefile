@@ -13,8 +13,6 @@ makemigrations :
 migrate:
 	@python3 manage.py migrate
 
-dball: makemigrations migrate
-
 # ----------------------------------------------------------------
 # Criar novo Super Usuário
 
